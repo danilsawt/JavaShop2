@@ -1,12 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
+<head></head>
+<div class="main">
 
+    <h1>ADMIN Panel</h1>
+    <button class="del" onclick="openForm()">Add new user</button>
+    <div id="blablabla" class="adminregister">
+        <form role="form" action="/admin_registration" autocomplete="off" method="POST" modelAttribute="userrForm">
+            <label>First name</label>
+            <br>
+            <input type="text" name="first_name" placeholder="First Name">
+            <br>
+            <label>Last Name</label>
+            <br>
+            <input type="text" name="last_name" placeholder="Last Name">
+            <br>
+            <label>Email</label>
+            <br>
+            <input type="text" name="email" placeholder="Email">
+            <br>
+            <label>Username</label>
+            <br>
+            <input type="text" name="username" placeholder="Username">
+            <br>
+            <label>Password</label>
+            <br>
+            <input type="password" name="password" placeholder="Password">
+            <br>
+            <label>Confirm Password</label>
+            <br>
+            <input type="password" name="passwordConfirm" placeholder="Confirm Password">
+            <button type="submit" class="btn btn-success del">Sign Up</button>
+            <button class="del-close" type="button" onclick="closeForm()">Close Adding</button>
+        </form>
+        <script src="/js/admin.js"></script>
+    </div>
+
+    <table class="alert alert-info mt-2 users">
+        <thead>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th>Delete User</th>
+        <th colspan="2">Operator actions</th>
+        </thead>
+        <div th:each ="el : ${allUsers}">
+            <tr>
+                <td th:text="${el.id}"></td>
+                <td th:text="${el.first_name}"></td>
+                <td th:text="${el.last_name}"></td>
+                <td th:text="${el.email}"></td>
+                <td th:text="${el.username}"></td>
+                <td th:text="${el.password}"></td>
+                <td>
+                    <div th:each="role : ${el.roles}"><span th:text="${role.name}"></span></div>
+                </td>
+                <td>
+                    <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
+                        <input type="hidden" name="userId" th:value="${el.id}"/>
+                        <input type="hidden" name="action" th:value="delete"/>
+                        <button type="submit" class="btn btn-danger del">Delete</button>
+                    </form>
+                    <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
+                </td>
+                <td>
+                    <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
+                        <input type="hidden" name="userId" th:value="${el.id}"/>
+                        <input type="hidden" name="action" th:value="give_operator"/>
+                        <button type="submit" class="btn btn-danger del">Give Operator</button>
+                    </form>
+                    <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
+                </td>
+                <td>
+                    <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
+                        <input type="hidden" name="userId" th:value="${el.id}"/>
+                        <input type="hidden" name="action" th:value="delete_operator"/>
+                        <button type="submit" class="btn btn-danger del">Del Operator</button>
+                    </form>
+                    <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
+                </td>
+            </tr>
+        </div>
+    </table>
+</div>
 </body>
 </html>
-
-
