@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Каталог</title>
+</head>
+<body>
+<nav class="nav">
+    <div class="container">
+        <h1 class="logo"><a href="/">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')"><button>AdminPanel</button></a>
+            <a href="/catalog"><button>Каталог</button></a>
+            <a href="/login" sec:authorize="isAnonymous()"><button>Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()"><button>Logout</button></a>
+            <h1 th:text="${#authentication.name}" sec:authorize="isAuthenticated()"></h1>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="container">
+        <!--                          -->
+        <div class="Items" th:each ="el : ${allItems}">
+            <form action="/current_item" method="post">
+                <button type="submit" id="itemButtons">
+                    <div th:text="${el.articul}"></div>
+                    <img src="../static/pictures/${el.photo_name}">
+                    <div th:text="${el.name}"></div>
+                    <div th:text="${el.price}"></div>
+                </button>
+            </form>
+        </div>
+
+
+
+
+
+
+        <!--                          -->
+    </div>
+</div>
+
+</body>
+</html>
