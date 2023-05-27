@@ -11,8 +11,8 @@
     <form method="POST" action="/login">
         <div class="con">
             <header class="head-form">
-                <h2>Sign In</h2>
-                <p>sign in here using your username and password</p>
+                <h2>Вход</h2>
+                <p>Входите же в свой аккаунт,товарищ!</p>
             </header>
             <br>
             <div class="field-set">
@@ -25,19 +25,16 @@
                     <i class="fa fa-key"></i>
                 </span>
                 <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
-                <span>
-                    <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"><img src="/pictures/eye.svg" width="25" height="25"></i>
-                </span>
                 <br>
                 <span th:if="${errorMessage}" th:text="${errorMessage}"></span>
                 <br>
-                <button class="log-in" type="submit">Log In</button>
+                <button class="log-in" type="submit">Вход</button>
             </div>
 
             <div class="other">
-                <p align="center">or</p>
+                <p align="center">или</p>
                 <p> </p>
-                <a href="/registration"><button class="btn submits sign-up" type="button">Sign Up</button></a>
+                <a href="/registration"><button class="btn submits sign-up" type="button">Регистрация</button></a>
             </div>
         </div>
     </form>

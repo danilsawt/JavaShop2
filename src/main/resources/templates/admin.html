@@ -4,39 +4,54 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<head></head>
-<div class="main">
 
+<nav class="nav">
+    <div class="container">
+        <h1 class="logo"><a href="/">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')"><button>AdminPanel</button></a>
+            <a href="/catalog"><button>Каталог</button></a>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+<div class="main">
     <h1>ADMIN Panel</h1>
-    <button class="del" onclick="openForm()">Add new user</button>
+    <button class="del" onclick="openForm()">Добавить</button>
     <div id="blablabla" class="adminregister">
         <form role="form" action="/admin_registration" autocomplete="off" method="POST" modelAttribute="userrForm">
             <label>First name</label>
             <br>
-            <input type="text" name="first_name" placeholder="First Name">
+            <input type="text" name="first_name" placeholder="Имя">
             <br>
             <label>Last Name</label>
             <br>
-            <input type="text" name="last_name" placeholder="Last Name">
+            <input type="text" name="last_name" placeholder="Фамилия">
             <br>
             <label>Email</label>
             <br>
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="email" placeholder="почта">
             <br>
             <label>Username</label>
             <br>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" placeholder="никнейм">
             <br>
             <label>Password</label>
             <br>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="пароль">
             <br>
             <label>Confirm Password</label>
             <br>
-            <input type="password" name="passwordConfirm" placeholder="Confirm Password">
-            <button type="submit" class="btn btn-success del">Sign Up</button>
+            <input type="password" name="passwordConfirm" placeholder="подтверждения пароля">
+            <button type="submit" class="btn btn-success del">Зарегистрировать</button>
             <button class="del-close" type="button" onclick="closeForm()">Close Adding</button>
         </form>
         <script src="/js/admin.js"></script>
@@ -69,7 +84,7 @@
                     <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
                         <input type="hidden" name="userId" th:value="${el.id}"/>
                         <input type="hidden" name="action" th:value="delete"/>
-                        <button type="submit" class="btn btn-danger del">Delete</button>
+                        <button type="submit" class="btn btn-danger del">Удалить</button>
                     </form>
                     <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
                 </td>
@@ -77,7 +92,7 @@
                     <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
                         <input type="hidden" name="userId" th:value="${el.id}"/>
                         <input type="hidden" name="action" th:value="give_operator"/>
-                        <button type="submit" class="btn btn-danger del">Give Operator</button>
+                        <button type="submit" class="btn btn-danger del">Дать роль</button>
                     </form>
                     <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
                 </td>
@@ -85,7 +100,7 @@
                     <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
                         <input type="hidden" name="userId" th:value="${el.id}"/>
                         <input type="hidden" name="action" th:value="delete_operator"/>
-                        <button type="submit" class="btn btn-danger del">Del Operator</button>
+                        <button type="submit" class="btn btn-danger del">Удалить роль</button>
                     </form>
                     <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
                 </td>

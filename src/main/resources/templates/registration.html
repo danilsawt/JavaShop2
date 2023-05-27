@@ -11,51 +11,51 @@
     <form th:action="@{/registration}" method="POST" modelAttribute="userForm">
         <div class="con">
             <header class="head-form">
-                <h2>Sign Up</h2>
-                <p>sign up here</p>
+                <h2>Регистрация</h2>
+                <p>Еще нет аккаунта?Регистрируйтесь же скорей,уважаеймый(ая)!</p>
             </header>
             <br>
             <div class="field-set">
                 <span class="input-item">
                     <i class="fa fa-user-circle"></i>
                 </span>
-                <input type="text" name="first_name" class="form-input" placeholder="First Name" autofocus="true">
+                <input type="text" name="first_name" class="form-input" placeholder="Имя" autofocus="true">
                 <br>
                 <span class="input-item">
                     <i class="fa fa-user-circle"></i>
                 </span>
-                <input type="text" name="last_name"  class="form-input" placeholder="Last Name" autofocus="true">
+                <input type="text" name="last_name"  class="form-input" placeholder="Фамилия" autofocus="true">
                 <br>
                 <span class="input-item">
                     <i class="fa fa-user-circle"></i>
                 </span>
-                <input type="text" name="email"  class="form-input" placeholder="Email" autofocus="true">
+                <input type="text" name="email"  class="form-input" placeholder="забугорная почта" autofocus="true">
                 <br>
                 <span class="input-item">
                     <i class="fa fa-user-circle"></i>
                 </span>
-                <input class="form-input" type="text" name="username" placeholder="Username" required>
+                <input class="form-input" type="text" name="username" placeholder="Как я могу к вам обращаться?" required>
                 <br>
                 <span class="input-item">
                     <i class="fa fa-key"></i>
                 </span>
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+                <input class="form-input" type="password" placeholder="Пароль" id="pwd"  name="password" required>
                 <br>
                 <span class="input-item">
                     <i class="fa fa-key"></i>
                 </span>
-                <input type="password" class="form-input" name="passwordConfirm" placeholder="Confirm your password">
+                <input type="password" class="form-input" name="passwordConfirm" placeholder="И еще разок">
                 <br>
                 <span th:if="${passwordError}" class="error">Passwords not equals</span>
                 <span th:if="${usernameError}" class="error">This username or email already registered</span>
                 <br>
-                <button class="log-in" type="submit">Sign Up</button>
+                <button class="log-in" type="submit">Зарегистрироваться</button>
             </div>
 
             <div class="other">
-                <p align="center">or</p>
+                <p align="center">или</p>
                 <p> </p>
-                <a href="/login"><button class="btn submits sign-up" type="button">Sign In</button></a>
+                <a href="/login"><button class="btn submits sign-up" type="button">Войти на этот чудесный сайт!</button></a>
             </div>
         </div>
     </form>
