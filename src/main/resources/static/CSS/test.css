@@ -1,0 +1,52 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav1 {
+  padding-top: 10px;
+  background-color: #040403;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav1 a {
+  color: rgb(235, 229, 229);
+  text-decoration: none;
+  padding: 7px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 a:hover {
+  color: #e01010;
+  font-weight: bold;
+}
+
+h1.logo1 {
+    text-align: center;
+    color: white;
+    -webkit-text-stroke: 0px pink;
+}
+
+a.link {
+    text-decoration: none;
+    color: white;
+    -webkit-text-stroke: 0px purple;
+}

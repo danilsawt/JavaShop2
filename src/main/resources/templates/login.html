@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <title>Sign In</title>
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/a.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
 </head>
 <body>
-<div class="overlay">
+<nav class="nav1">
+    <div class="container1" style="height: 125px;">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
+<div class="overlay" style="margin-top: 120px;">
     <form method="POST" action="/login">
         <div class="con">
             <header class="head-form">
-                <h2>Sign In</h2>
-                <p>sign in here using your username and password</p>
+                <h2 style="color: white;">Sign In</h2>
+                <p style="color: white;">sign in here using your username and password</p>
             </header>
             <br>
             <div class="field-set">
@@ -26,7 +42,7 @@
                 </span>
                 <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
                 <span>
-                    <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"><img src="/pictures/eye.svg" width="25" height="25"></i>
+                    <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"  style="background: #211f1f;"><img src="/pictures/eye.svg" width="25" height="25"></i>
                 </span>
                 <br>
                 <span th:if="${errorMessage}" th:text="${errorMessage}"></span>
@@ -35,9 +51,9 @@
             </div>
 
             <div class="other">
-                <p align="center">or</p>
+                <p align="center" style="color: white;">or</p>
                 <p> </p>
-                <a href="/registration"><button class="btn submits sign-up" type="button">Sign Up</button></a>
+                <a href="/registration"><button class="btn submits sign-up kkk" type="button">Sign Up</button></a>
             </div>
         </div>
     </form>

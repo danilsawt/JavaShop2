@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
 </head>
 <body>
-<head></head>
+<nav class="nav1">
+    <div class="container1">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()" class="link"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
 <div class="main">
-
-    <h1>ADMIN Panel</h1>
+    <h1 class="logo1">ADMIN Panel</h1>
     <button class="del" onclick="openForm()">Add new user</button>
     <div id="blablabla" class="adminregister">
         <form role="form" action="/admin_registration" autocomplete="off" method="POST" modelAttribute="userrForm">
@@ -38,6 +51,31 @@
             <input type="password" name="passwordConfirm" placeholder="Confirm Password">
             <button type="submit" class="btn btn-success del">Sign Up</button>
             <button class="del-close" type="button" onclick="closeForm()">Close Adding</button>
+        </form>
+        <script src="/js/admin.js"></script>
+    </div>
+
+    <button class="del1" onclick="openForm1()">Add new furniture</button>
+    <div id="blablablaa" class="adminregister">
+        <form role="form" action="/admin_create_furniture" autocomplete="off" method="POST" modelAttribute="furnForm">
+            <label>Articul</label>
+            <br>
+            <input type="text" name="articul" placeholder="Articul">
+            <br>
+            <label>Title</label>
+            <br>
+            <input type="text" name="name" placeholder="Title">
+            <br>
+            <label>Price</label>
+            <br>
+            <input type="text" name="price" placeholder="Price">
+            <br>
+            <label>Photo</label>
+            <br>
+            <input type="text" name="photo_name" placeholder="Photo">
+            <input type="hidden" name="ed_izmer" th:value="шт"/>
+            <button type="submit" class="btn btn-success del">Create new furniture</button>
+            <button class="del-close" type="button" onclick="closeForm1()">Close Adding</button>
         </form>
         <script src="/js/admin.js"></script>
     </div>
@@ -76,16 +114,16 @@
                 <td>
                     <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
                         <input type="hidden" name="userId" th:value="${el.id}"/>
-                        <input type="hidden" name="action" th:value="give_operator"/>
-                        <button type="submit" class="btn btn-danger del">Give Operator</button>
+                        <input type="hidden" name="action" th:value="give_manager"/>
+                        <button type="submit" class="btn btn-danger del">Give Manager</button>
                     </form>
                     <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
                 </td>
                 <td>
                     <form action="/admin" method="post" th:if="${el.id} != ${#request.userPrincipal.principal.id}">
                         <input type="hidden" name="userId" th:value="${el.id}"/>
-                        <input type="hidden" name="action" th:value="delete_operator"/>
-                        <button type="submit" class="btn btn-danger del">Del Operator</button>
+                        <input type="hidden" name="action" th:value="delete_manager"/>
+                        <button type="submit" class="btn btn-danger del">Del Manager</button>
                     </form>
                     <span th:if="${el.id} == ${#request.userPrincipal.principal.id}">No actions</span>
                 </td>

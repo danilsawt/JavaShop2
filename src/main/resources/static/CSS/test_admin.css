@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+button.kkk{
+  padding: 15px 20px;
+  background-color: #050801;
+  color: #03e9f4;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 4px;
+  overflow: hidden;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+button.kkk:hover{
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+.flexboxes {
+    position: relative;
+      max-width: 998px;
+      width: 100%;
+      margin-top: 40px;
+      margin-left: 24.5%;
+}
+
+.card-columns {
+  -webkit-column-count: 3; /*Выставляем кол-во колонок*/
+  -moz-column-count: 3; /*Выставляем кол-во колонок*/
+  column-count: 3; /*Выставляем кол-во колонок*/
+  -webkit-column-gap: 25px; /*Отступы между колонками*/
+  -moz-column-gap: 25px; /*Отступы между колонками*/
+  column-gap: 22px; /*Отступы между колонками*/
+  orphans: 1; /*минимальное число строк в блочном контейнере*/
+  widows: 1; /*минимальное количество линий на странице*/
+}
+.items {
+    padding-bottom: 15px;
+}

@@ -1,0 +1,53 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav1 {
+  background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0,2)),url("https://phonoteka.org/uploads/posts/2021-04/1618875237_9-phonoteka_org-p-fon-dlya-mebelnogo-saita-9.jpg");
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav1 a {
+  color: rgb(235, 229, 229);
+  text-decoration: none;
+  padding: 7px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav1 a:hover {
+  color: #e01010;
+  font-weight: bold;
+}
+
+h1.logo1 {
+    font-size: 45px;
+    text-align: center;
+    color: black;
+    -webkit-text-stroke: 0px pink;
+}
+
+a.link {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    -webkit-text-stroke: 0px purple;
+}

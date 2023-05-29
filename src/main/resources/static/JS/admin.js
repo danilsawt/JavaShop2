@@ -6,12 +6,12 @@ function closeForm(){
   document.getElementById("blablabla").style.display = "none";
 };
 
-function openThemes(){
-  document.getElementById("the").style.display = "block";
+function openForm1(){
+  document.getElementById("blablablaa").style.display = "block";
 };
 
-function closeThemes(){
-  document.getElementById("the").style.display = "none";
+function closeForm1(){
+  document.getElementById("blablablaa").style.display = "none";
 };
 
 

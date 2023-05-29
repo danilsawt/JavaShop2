@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="/css/reg.css">
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/a.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
 </head>
 <body>
+<nav class="nav1">
+    <div class="container1" style="height: 125px;">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
 <div class="overlay">
     <form th:action="@{/registration}" method="POST" modelAttribute="userForm">
         <div class="con">
             <header class="head-form">
-                <h2>Sign Up</h2>
-                <p>sign up here</p>
+                <h2 style="color: white;">Sign Up</h2>
+                <p style="color: white;">sign up here</p>
             </header>
             <br>
             <div class="field-set">
@@ -53,9 +69,9 @@
             </div>
 
             <div class="other">
-                <p align="center">or</p>
+                <p align="center" style="color: white;">or</p>
                 <p> </p>
-                <a href="/login"><button class="btn submits sign-up" type="button">Sign In</button></a>
+                <a href="/login" style=""><button class="btn submits sign-up kkk" type="button">Sign In</button></a>
             </div>
         </div>
     </form>

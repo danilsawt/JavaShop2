@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Claim Request</title>
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
+    <link rel="stylesheet" href="/css/ticket_buttons.css">
+    <style>
+        body {
+           background-image: url("https://phonoteka.org/uploads/posts/2021-04/1618875237_9-phonoteka_org-p-fon-dlya-mebelnogo-saita-9.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .main {
+            padding-top: 5px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="nav1">
+    <div class="container1">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
+
+<div class="main">
+    <h1 class="logo1" style="color: cyan; -webkit-text-stroke: 1px black; padding-bottom: 5px;">Запросы</h1>
+<p th:if="${noTickets}" style="text-align: center; color: #3a014f;">No tickets</p>
+<div class="list" th:if="${not noTickets}">
+    <ul class="ticketList">
+        <li th:each ="el : ${allTickets}">
+
+
+            <form action="/current_ticket" method="post">
+                <input type="hidden" name="ticketId" th:value="${el.id}"/>
+
+                <button type="submit" class="ticketButtons">
+                    <table class="alert alert-info mt-2 ticketTable">
+                        <thead>
+                        <th>ID</th>
+                        <th>Date Opened</th>
+                        <th>Stage</th>
+                        <th>Last Update</th>
+                        </thead>
+                        <div>
+                            <tr>
+                                <td th:text="${el.id}"></td>
+                                <td th:text="${el.dateOpened}"></td>
+                                <td th:text="${el.stage}" style="color: red;"></td>
+                                <td th:text="${el.lastUpdated}"></td>
+                            </tr>
+                        </div>
+                    </table>
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
+    <link rel="stylesheet" href="/css/catalog_buttons.css">
+    <title>Каталог</title>
+    <style>
+        body {
+           background-image: url("https://phonoteka.org/uploads/posts/2021-04/1618875237_9-phonoteka_org-p-fon-dlya-mebelnogo-saita-9.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="nav1">
+    <div class="container1">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
+<h1 class="logo1" style="color: cyan; -webkit-text-stroke: 1px black; padding-top: 10px;">Каталог</h1>
+<div class="flexboxes">
+    <div class="card-columns">
+        <div class="items" th:each ="el : ${allItems}">
+            <form action="/current_item" method="post">
+                <button type="submit" class="itemButtons btn-5">
+                    <input type="hidden" name="art" th:value="${el.articul}"/>
+
+                    <div style="padding-bottom: 5px;">Арт. <span th:text="${el.articul}"></span></div>
+                    <img th:src="@{${'/pictures/' + el.photo_name}}" width="250" height="240" style="padding-bottom: 5px;">
+                    <div th:text="${el.name}" style="padding-bottom: 5px;"></div>
+                    <div style="padding-bottom: 5px;"><span th:text="${el.price}"></span> руб.</div>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

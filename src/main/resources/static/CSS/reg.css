@@ -10,8 +10,7 @@
 
 /* Start body rules */
 body {
-    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-image: url("https://w-dog.ru/wallpapers/2/18/381175595367891/divan-podushki-pufik-oboi.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
 
@@ -39,9 +38,9 @@ form {
     height: auto;
     border-radius: 5px;
     margin: 2% auto;
-    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    box-shadow: 0 9px 50px white;
     padding: 2%;
-    background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+    background: #121111;
 }
 /* form Container */
 form .con {
@@ -78,9 +77,9 @@ header p {letter-spacing: 0.05em;}
 
 
 .input-item {
-    background: #fff;
+    background: #211f1f;
     color: #333;
-    padding: 14.5px 0px 15px 9px;
+    padding: 14.5px 0px 14.2px 9px;
     border-radius: 5px 0px 0px 5px;
 }
 
@@ -132,6 +131,13 @@ input:focus {
     border-radius: 5px;
 }
 
+input {
+    background: #211f1f;
+}
+
+input::placeholder {
+  color: white;
+}
 /* //////////////////////////////////////////// */
 /* //////////////////////////////////////////// */
 
@@ -201,4 +207,8 @@ a {
     margin: 20px;
     height: 100px;
 }
-//
+
+
+textarea:focus, input:focus {
+    color: white;
+}

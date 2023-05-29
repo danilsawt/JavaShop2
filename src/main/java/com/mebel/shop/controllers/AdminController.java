@@ -1,7 +1,9 @@
 package com.mebel.shop.controllers;
 
+import com.mebel.shop.models.Item;
 import com.mebel.shop.models.Role;
 import com.mebel.shop.models.User;
+import com.mebel.shop.repository.CatalogRepository;
 import com.mebel.shop.repository.RoleRepository;
 import com.mebel.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,6 +23,9 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private CatalogRepository catalogRepository;
     @GetMapping("/admin")
     public String userList(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("userForm", new User());
@@ -58,17 +60,28 @@ public class AdminController {
     @PostMapping("/admin_registration")
     public String addUserByAdmin(@ModelAttribute("userrForm")@Valid User userrForm, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
-            return "admin";
+            return "redirect:/admin";
         }
         if (!userrForm.getPassword().equals(userrForm.getPasswordConfirm())){
             model.addAttribute("passwordError","Пароли не совпадают");
-            return "admin";
+            return "redirect:/admin";
         }
         if (!userService.saveUser(userrForm)){
             model.addAttribute("usernameError","Пользователь с таким именем уже существует!");
-            return "admin";
+            return "redirect:/admin";
         }
-        return "redirect/admin";
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/admin_create_furniture")
+    public String addFurnitureByAdmin(@ModelAttribute("furnForm")@Valid Item furnForm, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            return "redirect:/admin";
+        }
+
+
+        catalogRepository.save(furnForm);
+        return "redirect:/admin";
     }
 
 }

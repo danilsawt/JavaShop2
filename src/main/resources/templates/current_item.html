@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
+    <link rel="stylesheet" href="/css/catalog_buttons.css">
+    <link rel="stylesheet" href="/css/ticket_buttons.css">
+    <link rel="stylesheet" href="/css/ok_no.css">
+    <style>
+        body {
+           background-image: url("https://phonoteka.org/uploads/posts/2021-04/1618875237_9-phonoteka_org-p-fon-dlya-mebelnogo-saita-9.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="nav1">
+    <div class="container1">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
+
+<h1 class="logo1" style="color: cyan; -webkit-text-stroke: 1px black; padding-top: 10px; margin-bottom: 15px;">Предмет</h1>
+
+            <div class="currItem" th:each ="el : ${item}">
+                <div id="ar" style="font-weight: bold;">
+                    Арт. <span th:text="${el.articul}"></span>
+                </div>
+                <div id="it" style="font-weight: bold;">
+                    <span th:text="${el.name}"></span>
+                </div>
+                <div id="photo">
+                    <img th:src="@{${'/pictures/' + pht}}" width="400" height="400">
+                </div>
+                <div id="pr" style="font-weight: bold;">
+                    <span th:text="${el.price}"></span> руб.
+                </div>
+                <form action="/cart" method="post">
+                    <input type="hidden" name="art" th:value="${el.articul}"/>
+                    <button type="submit" class="ticketButtons" style="margin-top: 35px;">Купить</button>
+                </form>
+            </div>
+
+
+
+
+        </div>
+</body>
+</html>

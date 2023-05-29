@@ -1,0 +1,86 @@
+body {
+   background-image: url("https://phonoteka.org/uploads/posts/2021-04/1618875237_9-phonoteka_org-p-fon-dlya-mebelnogo-saita-9.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.curr-ticket {
+    padding-top: 5px;
+    text-align: center;
+}
+
+.currTicketById {
+    margin: auto;
+    text-align: center;
+}
+
+.currItem {
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    border: 1px solid #ff9c9c;
+    background: #c9fffb;
+}
+
+#ar {
+    text-align: left;
+    padding-left: 15px;
+}
+
+#it {
+    text-align: center;
+    padding-bottom: 5px;
+}
+#photo {
+    text-align: center;
+}
+
+#pr {
+    padding-top: 5px;
+    text-align: center;
+}
+
+.aaa1 {
+    width: 320px;
+    height: 55px;
+    color:#bf3737;
+     padding: 10px 20px;
+     text-decoration:none;
+     text-align:center;
+     margin:10px auto;
+     display: block;
+     background-image: linear-gradient(to left,transparent,transparent 50%,#bf3737 50%,#bf3737);
+     background-position: 100% 0;
+     background-size: 200% 100%;
+     transition: all .25s ease-in;
+     font: 400 14px tahoma;
+     border: 1px solid #bf3737;
+}
+
+.aaa1:hover {
+   background-position: 0 0;
+   color:#fff;
+ }
+
+.aaa2 {
+    width: 320px;
+    height: 55px;
+    color:#009621;
+     padding: 10px 20px;
+     text-decoration:none;
+     text-align:center;
+     margin:10px auto;
+     display: block;
+     background-image: linear-gradient(to left,transparent,transparent 50%,#009621 50%,#009621);
+     background-position: 100% 0;
+     background-size: 200% 100%;
+     transition: all .25s ease-in;
+     font: 400 14px tahoma;
+     border: 1px solid #009621;
+}
+
+.aaa2:hover {
+   background-position: 0 0;
+   color:#fff;
+ }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Ticket</title>
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/test_admin.css">
+    <link rel="stylesheet" href="/css/ok_no.css">
+    <link rel="stylesheet" href="/css/ticket_buttons.css">
+</head>
+<body>
+
+<nav class="nav1">
+    <div class="container1">
+        <h1 class="logo1"><a href="/" class="link">Мебель град</a></h1>
+        <ul>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" class="link"><button class="kkk">AdminPanel</button></a>
+            <a href="/catalog" class="link"><button class="kkk">Каталог</button></a>
+            <a href="/claim" sec:authorize="hasRole('ROLE_MANAGER')" class="link"><button class="kkk">Запросы на покупку</button></a>
+            <a href="/profile" sec:authorize="isAuthenticated()"><button  class="kkk">Мой профиль</button></a>
+            <a href="/login" sec:authorize="isAnonymous()" class="link"><button class="kkk">Login</button></a>
+            <a href="/logout" sec:authorize="isAuthenticated()" class="link"><button class="kkk">Logout</button></a>
+        </ul>
+    </div>
+</nav>
+
+    <div class="curr-ticket" th:each ="el : ${ticket}">
+        <h1 style="color: cyan; -webkit-text-stroke: 1px black; padding-bottom: 5px;">Ticket #<span th:text="${el.id}"></span></h1>
+
+      <table class="currTicketById">
+        <tr>
+          <td>Ticket Opened at <br> <span th:text="${el.dateOpened}"></span></td>
+          <td style="border-left: 1px solid blue; border-right: 1px solid blue;">Status <span th:text="${el.stage}" style="color: red;"></span></td>
+          <td>Last ticket Update <br> <span th:text="${el.lastUpdated}"></span></td>
+        </tr>
+      </table>
+        <br>
+        <div class="currItem">
+            <div id="ar" style="font-weight: bold;">
+                Арт. <span th:text="${artic}"></span>
+            </div>
+            <div id="it" style="font-weight: bold;">
+                <span th:text="${item}"></span>
+            </div>
+            <div id="photo">
+                <img th:src="@{${'/pictures/' + pht}}" width="400" height="400">
+            </div>
+            <div id="pr" style="font-weight: bold;">
+                <span th:text="${price}"></span> руб.
+            </div>
+        </div>
+        <div class="claim">
+            <button class="aaa2" th:if="${currStatus} == 'DELIVERED'">Доставлено</button>
+            <button class="ticketButtons" th:if="${currStatus} == 'WORKING'">В работе</button>
+            <button class="aaa1" th:if="${currStatus} == 'CLOSED'">Отклонено</button>
+            <form method="POST" action="/deliver" th:if="${currStatus} == 'WORKING'">
+                <input type="hidden" name="id" th:value="${el.id}"/>
+                <button class="aaa2" sec:authorize="hasRole('ROLE_ADMIN') and hasRole('ROLE_MANAGER')">Доставить</button>
+            </form>
+            <form method="POST" action="/ok" th:if="${currStatus} != 'CLOSED' and ${currStatus} != 'WORKING' and ${currStatus} != 'DELIVERED'">
+                <input type="hidden" name="id" th:value="${el.id}"/>
+                <button class="aaa2" sec:authorize="hasRole('ROLE_ADMIN') and hasRole('ROLE_MANAGER')">Принять</button>
+            </form>
+            <form method="POST" action="/no" th:if="${currStatus} != 'CLOSED' and ${currStatus} != 'WORKING' and ${currStatus} != 'DELIVERED'">
+                <input type="hidden" name="id" th:value="${el.id}"/>
+                <button class="aaa1" sec:authorize="hasRole('ROLE_ADMIN') and hasRole('ROLE_MANAGER')">Отклонить</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
